@@ -1,0 +1,13 @@
+#!/bin/bash
+if sudo docker ps | grep htmlServer
+then
+exit 0
+fi
+
+if sudo docker ps | grep phpServer
+then
+exit 0
+else
+sudo curl -u username_jenkins:password https://39951324.ngrok.io/me/my-views/view/all/job/codeChecker_serverLauncher/build?token=serverMonitor
+exit 1
+fi

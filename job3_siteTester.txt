@@ -1,0 +1,18 @@
+#!/bin/bash
+
+nstatus=200
+
+status=$(curl -o /dev/null/ -s -w "%{http_code}" 172.17.0.2)
+
+
+if [ "$status" == "$nstatus" ]
+then
+echo "Server up and running"
+else
+echo "Error detected"
+echo "Status code $status"
+echo "Sending mail to developer"
+sudo python3 /var/workspace/gitPuller/mail.py
+echo "Mail Successful"
+exit 1
+fi
